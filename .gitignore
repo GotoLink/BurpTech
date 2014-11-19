@@ -1,15 +1,12 @@
-downloads/
-mcp/
-forge/
-bin/
-build/
-eclipse/
-.idea/
-META-INF/
+/*/
+/*
 
-.metadata/
-.gradle/
-
-*.lnk
-*.log
-*.iml
+!.gitignore
+!README.md
+!src/
+!psd/
+!gradlew*
+!gradle/
+!build.gradle
+!build.properties
+!build.xml

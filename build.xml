@@ -21,8 +21,9 @@
 
 	<target name="prep">
 		<copy todir="forge\mcp\src\minecraft">
-			<fileset dir="src\common\" />
-			<fileset dir="src\resources" includes="mcmod.info" />
+            <fileset dir="src\api\java" />
+			<fileset dir="src\main\java" />
+			<fileset dir="src\main\resources" includes="mcmod.info" />
 		</copy>
 	</target>
 
@@ -60,9 +61,9 @@
 		<!-- Build the jar -->
 		<mkdir dir="bin\${build.release.minecraft.version}\" />
 		<jar destfile="bin\${build.release.minecraft.version}\burptech-${build.release.minecraft.version}.${build.release.number}.jar">
-			<fileset dir="src\resources" excludes="**/xcf/**,mcmod.info" />
-			<fileset dir="forge\mcp\src\minecraft\" includes="mcmod.info" />
-			<fileset dir="forge\mcp\reobf\minecraft" excludes="**/invtweaks/**,**/ic2/**,**/mods/**,**/buildcraft/**" />
+			<fileset dir="src\main\resources" excludes="**/xcf/**,mcmod.info" />
+			<fileset dir="forge\mcp\src\minecraft" includes="mcmod.info" />
+			<fileset dir="forge\mcp\reobf\minecraft" excludes="**/invtweaks/**,**/ic2/**,**/railcraft/**,**/buildcraft/**" />
 		</jar>
 
 		<!-- Clean up the source now that we are done -->
