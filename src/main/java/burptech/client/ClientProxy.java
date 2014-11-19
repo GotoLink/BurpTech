@@ -1,0 +1,51 @@
+package burptech.client;
+
+import burptech.BurpTechCore;
+import burptech.CommonProxy;
+import burptech.client.gui.GuiAdvancedWorkbench;
+import burptech.client.gui.GuiPortableWorkbench;
+import burptech.integration.NeiIntegration;
+import burptech.lib.VersionChecker;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
+
+public class ClientProxy extends CommonProxy
+{
+    @Override
+    public void postInitialization()
+    {
+        addNeiSupport();
+
+        MinecraftForge.EVENT_BUS.register(this);
+
+        if (BurpTechCore.configuration.enableCheckForUpdates.getBoolean(true))
+            FMLCommonHandler.instance().bus().register(new VersionChecker());
+    }
+
+	private void addNeiSupport()
+	{
+		if (BurpTechCore.configuration.recipePortableWorkbench.getBoolean(true))
+    	{
+    		NeiIntegration.registerCraftingContainers(GuiPortableWorkbench.class);
+    	}
+
+        if (BurpTechCore.configuration.recipeAdvancedWorkbench.getBoolean(true))
+        {
+            NeiIntegration.registerCraftingContainers(GuiAdvancedWorkbench.class);
+        }
+    }
+
+    @SubscribeEvent
+    public void textureHook(TextureStitchEvent.Post event)
+    {
+        if (event.map.getTextureType() != 0)
+            return;
+
+        if (BurpTechCore.configuration.blocks.fluidNetherFluid != null && BurpTechCore.configuration.blocks.blockNetherFluid != null)
+        {
+            BurpTechCore.configuration.blocks.fluidNetherFluid.setIcons(BurpTechCore.configuration.blocks.blockNetherFluid.getBlockTextureFromSide(1), BurpTechCore.configuration.blocks.blockNetherFluid.getBlockTextureFromSide(2));
+        }
+    }
+}

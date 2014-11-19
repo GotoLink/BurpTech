@@ -20,15 +20,15 @@ dependencies {
 }
 
 apply plugin: 'forge'
-
-version = "1.7.10.55"
-group = "github.burptech"
-archivesBaseName = "BurpTech"
-
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
 minecraft {
     version = "1.7.10-10.13.2.1230"
     runDir = "eclipse"
 }
+version = "1.7.10.55"
+group = "github.burptech"
+archivesBaseName = "BurpTech"
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
