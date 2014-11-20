@@ -15,10 +15,6 @@ buildscript {
     }
 }
 
-dependencies {
-    compile 'com.mod-buildcraft:buildcraft:6.1.8:dev'
-}
-
 apply plugin: 'forge'
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -29,6 +25,10 @@ minecraft {
 version = "1.7.10.55"
 group = "github.burptech"
 archivesBaseName = "BurpTech"
+
+dependencies {
+    compile fileTree(dir: 'libs', includes: ['*.jar'])
+}
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
