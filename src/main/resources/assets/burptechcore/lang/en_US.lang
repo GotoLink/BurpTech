@@ -1,6 +1,3 @@
-# Master Language File
-
-#items
 item.enderRucksack.name=Ender Rucksack
 item.rucksack.name=Rucksack
 item.portableWorkbench.name=Portable Workbench
@@ -20,11 +17,9 @@ item.ironSickle.name=Iron Sickle
 item.goldSickle.name=Gold Sickle
 item.diamondSickle.name=Diamond Sickle
 
-#blocks
 tile.blockNetherCoal.name=Block of Nether Infused Coal
 tile.blockNetherFluid.name=Nether Fuel
 tile.blockAdvancedWorkbench.name=Advanced Workbench
 tile.blockCobbleGenerator.name=Cobblestone Generator
 
-#fluids
 fluid.nether=Nether Fuel
