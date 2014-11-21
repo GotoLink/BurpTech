@@ -13,8 +13,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraftforge.common.MinecraftForge;
-
-import java.util.logging.Logger;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, useMetadata = true)
 public class BurpTechCore
@@ -32,7 +31,7 @@ public class BurpTechCore
     public void preInitialization(FMLPreInitializationEvent e)
     {
         // setup logger
-        log = Logger.getLogger(Constants.MOD_ID);
+        log = e.getModLog();
         configuration = BurpTechConfig.load(e.getModConfigurationDirectory());
         
         //gui handler

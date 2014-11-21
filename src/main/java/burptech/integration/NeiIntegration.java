@@ -2,9 +2,9 @@ package burptech.integration;
 
 import burptech.BurpTechCore;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.Method;
-import java.util.logging.Level;
 
 public class NeiIntegration 
 {
@@ -24,10 +24,10 @@ public class NeiIntegration
             BurpTechCore.log.log(Level.INFO, "NEI integration of " + craftingContainer.getName() + " was successful");
         }
         catch (ClassNotFoundException ex){
-            BurpTechCore.log.log(Level.FINE, "NEI wasn't found.");
+            BurpTechCore.log.log(Level.DEBUG, "NEI wasn't found.");
         }
         catch (Throwable ex){
-        	BurpTechCore.log.log(Level.WARNING, "NEI integration of " + craftingContainer.getName() + " failed:" + ex.getMessage());
+        	BurpTechCore.log.log(Level.WARN, "NEI integration of " + craftingContainer.getName() + " failed:" + ex.getMessage());
         }
 		
 	}
