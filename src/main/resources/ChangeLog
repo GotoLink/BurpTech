@@ -1,3 +1,9 @@
+v1.7.10.55
+Update for everything (all APIs)
+Added ore dictionary support (planned by previous author)
+Changed localization to vanilla system
+Changed version checking to not obnoxious for older minecraft versions
+
 v1.6.4.53
 Added in Sickles
 
