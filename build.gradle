@@ -40,16 +40,12 @@ task sourceJar(type: Jar) {
     classifier = 'sources'
 }
 
-tasks.build.dependsOn('sourceJar', 'deobfJar')
-
-processResources
-{
+processResources {
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand('VERSION': project.version, 'MCVERSION': project.minecraft.version)
     }
         
     // copy everything else, thats not the mcmod.info
@@ -61,5 +57,4 @@ processResources
 artifacts {
 	archives deobfJar
 	archives sourceJar
-	archives jar
 }

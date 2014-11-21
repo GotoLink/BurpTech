@@ -44,10 +44,16 @@ For ecplise, we recommend [Setting Up Development Environment - By Pahimar](http
  Building the code
 ===================
 
+####Gradle####
+ - 1. Run 'gradlew clean build' on the directory
+ - 2. Outputs will be in the 'build/libs' directory
+
 ####Ants####
 
  - 1. Download `Apache Ant` - [found here](http://ant.apache.org/)
- - 2. Run ant on the `/` directory.
- - 3. Outputs will be in the `bin` directory
+ - 2. Download ModCoderPack - [found here](http://mcp.ocean-labs.de/)
+ - 3. Unzip MCP on the directory
+ - 3. Run ant on the `/` directory.
+ - 4. Outputs will be in the `bin` directory
  
 ***

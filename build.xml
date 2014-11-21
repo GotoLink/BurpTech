@@ -28,7 +28,8 @@
 	</target>
 
 	<target name="replace_tokens">
-		<replace dir="forge\mcp\src\minecraft" token="@VERSION@" value="${build.release.minecraft.version}.${build.release.number}" />
+		<replace dir="forge\mcp\src\minecraft" token="$VERSION" value="${build.release.minecraft.version}.${build.release.number}" />
+        <replace dir="forge\mcp\src\minecraft" token="$MCVERSION" value="${build.release.minecraft.version}" />
 	</target>
 
 	<target name="recompile">
