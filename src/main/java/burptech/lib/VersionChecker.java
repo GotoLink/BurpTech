@@ -19,7 +19,6 @@ public class VersionChecker extends Thread
     public boolean isOutdated = false;
     public String newVersion;
     public boolean hasRan = false;
-    public boolean hasDisplayed = false;
 
     public VersionChecker()
     {
@@ -65,10 +64,13 @@ public class VersionChecker extends Thread
         catch (Throwable e)
         {
             BurpTechCore.log.info("Version Check Failed With: " + e.getLocalizedMessage());
+            return;
         }
 
         if (isOutdated)
             BurpTechCore.log.info("Found Updated Version " + newVersion);
+        else
+            BurpTechCore.log.info("Current Version Is Up To Date: " + current);
     }
 
     private boolean compareVersion(String current) {
@@ -92,11 +94,10 @@ public class VersionChecker extends Thread
     @SubscribeEvent
     public void tickEnd(TickEvent.PlayerTickEvent event)
     {
-        if (!isOutdated || hasDisplayed)
+        if (this.isAlive())
             return;
-
-        hasDisplayed = true;
-
-        event.player.addChatMessage(new ChatComponentText("Version " + newVersion + " of BurpTech is available"));
+        if(isOutdated)
+            event.player.addChatMessage(new ChatComponentText("Version " + newVersion + " of BurpTech is available"));
+        FMLCommonHandler.instance().bus().unregister(this);
     }
 }
