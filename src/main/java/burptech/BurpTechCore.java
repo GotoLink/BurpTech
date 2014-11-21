@@ -16,7 +16,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.logging.Logger;
 
-@Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, version = Constants.MOD_VERSION)
+@Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, useMetadata = true)
 public class BurpTechCore
 {
 	@Instance(Constants.MOD_ID)

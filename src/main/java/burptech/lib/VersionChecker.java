@@ -1,6 +1,8 @@
 package burptech.lib;
 
 import burptech.BurpTechCore;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.util.ChatComponentText;
@@ -34,16 +36,16 @@ public class VersionChecker extends Thread
 
         hasRan = true;
 
-        String current = Constants.MOD_VERSION;
+        String current = FMLCommonHandler.instance().findContainerFor(Constants.MOD_ID).getVersion();
 
         try
         {
-            if (current.contains("@"))
+            if (current.contains("$"))
                 return;
 
             BurpTechCore.log.info("Checking for updates...");
 
-            URL url = new URL("https://raw.github.com/RenEvo/BurpTech/master/src/resources/ChangeLog");
+            URL url = new URL("https://raw.github.com/GotoLink/BurpTech/master/src/main/resources/ChangeLog");
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -53,11 +55,12 @@ public class VersionChecker extends Thread
                 if (version.length() > 0 && version.startsWith("v"))
                 {
                     newVersion = version.substring(1);
-                    break;
+                    if(newVersion.startsWith(Loader.MC_VERSION) && compareVersion(current)) {
+                        isOutdated = true;
+                        break;
+                    }
                 }
             }
-
-            isOutdated = !current.equals(newVersion);
         }
         catch (Throwable e)
         {
@@ -68,6 +71,24 @@ public class VersionChecker extends Thread
             BurpTechCore.log.info("Found Updated Version " + newVersion);
     }
 
+    private boolean compareVersion(String current) {
+        if(!current.equals(newVersion)){
+            String[] splitCurrent = current.split("\\.");
+            String[] splitLatest = newVersion.split("\\.");
+            int min = Math.min(splitCurrent.length, splitLatest.length);
+            if(min>3)//Ignore Minecraft version
+                for(int i = 3; i < min; i++){
+                    if(!splitCurrent[i].equals(splitLatest[i])){
+                        try{
+                           if(Integer.parseInt(splitCurrent[i]) < Integer.parseInt(splitLatest[i]))
+                               return true;
+                        }catch (Exception ignored){}
+                    }
+                }
+        }
+        return false;
+    }
+
     @SubscribeEvent
     public void tickEnd(TickEvent.PlayerTickEvent event)
     {
@@ -76,6 +97,6 @@ public class VersionChecker extends Thread
 
         hasDisplayed = true;
 
-        event.player.addChatMessage(new ChatComponentText("Version " + newVersion + " of §aBurpTech§r is available"));
+        event.player.addChatMessage(new ChatComponentText("Version " + newVersion + " of BurpTech is available"));
     }
 }

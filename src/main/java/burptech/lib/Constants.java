@@ -17,11 +17,6 @@ public final class Constants
     public static final String MOD_ID = "BurpTechCore";
     
     /**
-     * MOD VERSION
-     */
-    public static final String MOD_VERSION = "@VERSION@";
-    
-    /**
      * MOD NAME
      */
     public static final String MOD_NAME = "BurpTech";
