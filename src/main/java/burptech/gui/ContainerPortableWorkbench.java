@@ -8,160 +8,28 @@ import invtweaks.api.container.ContainerSection;
 import invtweaks.api.container.ContainerSectionCallback;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.*;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.inventory.ContainerWorkbench;
+import net.minecraft.inventory.Slot;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
 @ChestContainer(rowSize=9, isLargeChest=false) /** inventory tweaks support **/
-public class ContainerPortableWorkbench extends Container 
+public class ContainerPortableWorkbench extends ContainerWorkbench
 {
-
-	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
-    public IInventory craftResult = new InventoryCraftResult();
-    private World worldObj;
-
     @SideOnly(Side.CLIENT)
     private java.util.Map<ContainerSection, List<Slot>> slotMap;
 
-    public ContainerPortableWorkbench(InventoryPlayer par1InventoryPlayer, World world)
-    {
-        this.worldObj = world;
-        this.addSlotToContainer(new SlotCrafting(par1InventoryPlayer.player, this.craftMatrix, this.craftResult, 0, 124, 35));
-        int var6;
-        int var7;
-
-        for (var6 = 0; var6 < 3; ++var6)
-        {
-            for (var7 = 0; var7 < 3; ++var7)
-            {
-                this.addSlotToContainer(new Slot(this.craftMatrix, var7 + var6 * 3, 30 + var7 * 18, 17 + var6 * 18));
-            }
-        }
-
-        for (var6 = 0; var6 < 3; ++var6)
-        {
-            for (var7 = 0; var7 < 9; ++var7)
-            {
-                this.addSlotToContainer(new Slot(par1InventoryPlayer, var7 + var6 * 9 + 9, 8 + var7 * 18, 84 + var6 * 18));
-            }
-        }
-
-        for (var6 = 0; var6 < 9; ++var6)
-        {
-            this.addSlotToContainer(new Slot(par1InventoryPlayer, var6, 8 + var6 * 18, 142));
-        }
-
-        this.onCraftMatrixChanged(this.craftMatrix);
-    }
-
-    /**
-     * Callback for when the crafting matrix is changed.
-     */
-    @Override
-    public void onCraftMatrixChanged(IInventory par1IInventory)
-    {
-        this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj));
-    }
-
-    /**
-     * Callback for when the crafting gui is closed.
-     */
-    @Override
-    public void onContainerClosed(EntityPlayer par1EntityPlayer)
-    {
-        super.onContainerClosed(par1EntityPlayer);
-
-        if (!this.worldObj.isRemote)
-        {
-            for (int var2 = 0; var2 < 9; ++var2)
-            {
-                ItemStack var3 = this.craftMatrix.getStackInSlotOnClosing(var2);
-
-                if (var3 != null)
-                {
-                    ForgeHooks.onPlayerTossEvent(par1EntityPlayer, var3, true);
-                }
-            }
-        }
-    }
-    
-    public String getInvName()
-    {
-        return "container.crafting";
+    public ContainerPortableWorkbench(InventoryPlayer par1InventoryPlayer, World world) {
+        super(par1InventoryPlayer, world, 0, 0, 0);
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
     	return player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == BurpTechCore.configuration.items.portableWorkbench;
-    }
-
-    /**
-     * Called to transfer a stack from one inventory to the other eg. when shift clicking.
-     */
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex)
-    {
-        ItemStack var2 = null;
-        Slot var3 = (Slot)this.inventorySlots.get(slotIndex);
-
-        if (var3 != null && var3.getHasStack())
-        {
-            ItemStack var4 = var3.getStack();
-            var2 = var4.copy();
-
-            if (slotIndex == 0)
-            {
-                if (!this.mergeItemStack(var4, 10, 46, true))
-                {
-                    return null;
-                }
-
-                var3.onSlotChange(var4, var2);
-            }
-            else if (slotIndex >= 10 && slotIndex < 37)
-            {
-                if (!this.mergeItemStack(var4, 1, 10, false))
-                {
-                    return null;
-                }
-            }
-            else if (slotIndex >= 37 && slotIndex < 46)
-            {
-                if (!this.mergeItemStack(var4, 1, 10, false))
-                {
-                    return null;
-                }
-            }
-            else if (!this.mergeItemStack(var4, 10, 46, false))
-            {
-                return null;
-            }
-
-            if (var4.stackSize == 0)
-            {
-                var3.putStack(null);
-            }
-            else
-            {
-                var3.onSlotChanged();
-            }
-
-            if (var4.stackSize == var2.stackSize)
-            {
-                return null;
-            }
-
-            var3.onPickupFromSlot(player, var4);
-        }
-
-        return var2;
     }
 
     /*

@@ -75,11 +75,7 @@ public class TileEntityCobbleGenerator extends TileEntity
             return true;
 
         locatedMaterial = worldObj.getBlock(xCoord, yCoord, zCoord + 1).getMaterial();
-        if (locatedMaterial == material)
-            return true;
-
-
-        return false;
+        return locatedMaterial == material;
     }
 
     private IInventory getOutputInventory()

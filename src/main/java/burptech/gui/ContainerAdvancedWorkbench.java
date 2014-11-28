@@ -207,10 +207,7 @@ public class ContainerAdvancedWorkbench extends Container
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        if (workbench == null)
-            return false;
-
-        return workbench.isUseableByPlayer(player);
+        return workbench != null && workbench.isUseableByPlayer(player);
     }
 
     /*

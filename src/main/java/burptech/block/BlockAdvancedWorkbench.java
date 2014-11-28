@@ -43,10 +43,10 @@ public class BlockAdvancedWorkbench extends BlockContainer
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon(Constants.MOD_ID + ":advanced_workbench_side");
-        this.iconFront = par1IconRegister.registerIcon(Constants.MOD_ID + ":advanced_workbench_front");
-        this.iconTop = par1IconRegister.registerIcon(Constants.MOD_ID + ":advanced_workbench_top");
-        this.iconBottom = par1IconRegister.registerIcon(Constants.MOD_ID + ":advanced_workbench_bottom");
+        this.blockIcon = par1IconRegister.registerIcon(this.getTextureName() + "side");
+        this.iconFront = par1IconRegister.registerIcon(this.getTextureName() + "front");
+        this.iconTop = par1IconRegister.registerIcon(this.getTextureName() + "top");
+        this.iconBottom = par1IconRegister.registerIcon(this.getTextureName() + "bottom");
     }
 
     @Override
@@ -99,7 +99,7 @@ public class BlockAdvancedWorkbench extends BlockContainer
         {
             for (int i = 0; i < tileEntity.getSizeInventory(); ++i)
             {
-                if (TileEntityAdvancedWorkbench.isCraftingGrid(i) || TileEntityAdvancedWorkbench.isCraftingResult(i))
+                if (tileEntity.isCraftingGrid(i) || tileEntity.isCraftingResult(i))
                     continue;
 
                 tileEntity.dropInWorld(world, tileEntity.getStackInSlot(i), x, y, z);

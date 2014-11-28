@@ -1,12 +1,10 @@
 package burptech.block;
 
 import burptech.BurpTechConfig;
-import burptech.BurpTechCore;
 import burptech.entity.living.tweaks.EntityPlayerEventHandler;
 import burptech.lib.Constants;
 import burptech.tileentity.TileEntityAdvancedWorkbench;
 import burptech.tileentity.TileEntityCobbleGenerator;
-import cpw.mods.fml.common.registry.ExistingSubstitutionException;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCocoa;
@@ -19,16 +17,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 /*
  * Block definitions for BurpTech
  */
-public class Blocks 
+public final class Blocks
 {
 	public Block blockIlluminatedCocoaOn;
-	public Block blockIlluminatedCocoaOff;
-
     public Block blockNetherCoal;
     public Block blockNetherFluid;
     public Fluid fluidNetherFluid;
-
-
     public Block blockAdvancedWorkbench;
     public Block blockCobbleGenerator;
 
@@ -44,7 +38,7 @@ public class Blocks
 
         if (configuration.recipeAdvancedWorkbench.getBoolean(true))
         {
-            blockAdvancedWorkbench = new BlockAdvancedWorkbench().setHardness(5.0f).setResistance(10.0f).setStepSound(Block.soundTypeWood).setBlockName("blockAdvancedWorkbench");
+            blockAdvancedWorkbench = new BlockAdvancedWorkbench().setHardness(5.0f).setResistance(10.0f).setStepSound(Block.soundTypeWood).setBlockName("blockAdvancedWorkbench").setBlockTextureName(Constants.MOD_ID()+"advanced_workbench_");
             blockAdvancedWorkbench.setHarvestLevel("axe", 1);
             GameRegistry.registerBlock(blockAdvancedWorkbench, "blockAdvancedWorkbench");
             GameRegistry.registerTileEntity(TileEntityAdvancedWorkbench.class, "AdvancedWorkbench");
@@ -61,7 +55,7 @@ public class Blocks
 
     private void addNetherCoalBlocks()
     {
-        blockNetherCoal = new BlockSimpleRock().setBlockName("blockNetherCoal").setCreativeTab(CreativeTabs.tabMaterials).setBlockTextureName(Constants.MOD_ID + ":nether_coal_block");
+        blockNetherCoal = new BlockSimpleRock().setBlockName("blockNetherCoal").setCreativeTab(CreativeTabs.tabMaterials).setBlockTextureName(Constants.MOD_ID()+ "nether_coal_block");
         GameRegistry.registerBlock(blockNetherCoal, "blockNetherCoal");
     }
 
@@ -76,7 +70,7 @@ public class Blocks
 
 	private void addIlluminatedCocoa()
 	{
-		blockIlluminatedCocoaOn = new BlockCocoa().setHardness(0.2F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setLightLevel(0.9375F).setBlockName("coca").setBlockTextureName("cocoa");
+		blockIlluminatedCocoaOn = new BlockCocoa().setHardness(0.2F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setLightLevel(0.9375F).setBlockName("cocoa").setBlockTextureName("cocoa");
         GameRegistry.registerBlock(blockIlluminatedCocoaOn, "blockLightingCocoa");
         MinecraftForge.EVENT_BUS.register(new EntityPlayerEventHandler());
     }

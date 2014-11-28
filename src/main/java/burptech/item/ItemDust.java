@@ -25,7 +25,7 @@ public class ItemDust extends Item
         setHasSubtypes(true);
         setMaxDamage(0);
         this.setCreativeTab(CreativeTabs.tabMaterials);
-        this.setTextureName(Constants.MOD_ID + ":genericDust");
+        this.setTextureName(Constants.MOD_ID() + "genericDust");
         this.setUnlocalizedName("genericDust");
     }
 
@@ -71,7 +71,7 @@ public class ItemDust extends Item
 
         for (int i = 0; i < dusts.length; i++)
         {
-            icons[i] = par1IIconRegister.registerIcon(Constants.MOD_ID + ":" + dusts[i]);
+            icons[i] = par1IIconRegister.registerIcon(Constants.MOD_ID() + dusts[i]);
         }
     }
 }

@@ -1,13 +1,11 @@
 package burptech.block;
 
-import burptech.client.render.EntityDropParticleFX;
+import burptech.BurpTechCore;
 import burptech.lib.Constants;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -19,6 +17,12 @@ import net.minecraftforge.fluids.Fluid;
 import java.util.Random;
 
 public class BlockBurpTechFluid extends BlockFluidClassic {
+
+    @SideOnly(Side.CLIENT)
+    protected IIcon[] theIcon;
+    protected boolean flammable;
+    protected int flammability = 0;
+    protected boolean canSetFires;
     protected float particleRed;
     protected float particleGreen;
     protected float particleBlue;
@@ -27,21 +31,15 @@ public class BlockBurpTechFluid extends BlockFluidClassic {
         super(fluid, material);
     }
 
-    @SideOnly(Side.CLIENT)
-    protected IIcon[] theIcon;
-    protected boolean flammable;
-    protected int flammability = 0;
-    protected boolean canSetFires;
-
     @Override
     public IIcon getIcon(int side, int meta) {
-        return side != 0 && side != 1 ? this.theIcon[1] : this.theIcon[0];
+        return side > 1 ? this.theIcon[1] : this.theIcon[0];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
-        String icons = Constants.MOD_ID+ ":" + fluidName;
+        String icons = Constants.MOD_ID() + fluidName;
         this.theIcon = new IIcon[] { iconRegister.registerIcon(icons + "_still"), iconRegister.registerIcon(icons + "_flow") };
     }
 
@@ -104,29 +102,18 @@ public class BlockBurpTechFluid extends BlockFluidClassic {
         super.randomDisplayTick(world, x, y, z, rand);
 
         if (rand.nextInt(10) == 0 && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && !world.getBlock(x, y - 2, z).getMaterial().blocksMovement()) {
-            double px = (double) ((float) x + rand.nextFloat());
-            double py = (double) y - 1.05D;
-            double pz = (double) ((float) z + rand.nextFloat());
-
-            EntityFX fx = new EntityDropParticleFX(world, px, py, pz, particleRed, particleGreen, particleBlue);
-            FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
+            BurpTechCore.proxy.doDropParticles(world, x, y, z, rand, particleRed, particleGreen, particleBlue);
         }
     }
 
     @Override
     public boolean canDisplace(IBlockAccess world, int x, int y, int z) {
-        if (world.getBlock(x, y, z).getMaterial().isLiquid())
-            return false;
-
-        return super.canDisplace(world, x, y, z);
+        return !world.getBlock(x, y, z).getMaterial().isLiquid() && super.canDisplace(world, x, y, z);
     }
 
     @Override
     public boolean displaceIfPossible(World world, int x, int y, int z) {
-        if (world.getBlock(x, y, z).getMaterial().isLiquid())
-            return false;
-
-        return super.displaceIfPossible(world, x, y, z);
+        return !world.getBlock(x, y, z).getMaterial().isLiquid() && super.displaceIfPossible(world, x, y, z);
     }
 
     @Override

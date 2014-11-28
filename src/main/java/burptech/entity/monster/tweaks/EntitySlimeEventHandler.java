@@ -35,6 +35,5 @@ public class EntitySlimeEventHandler
     	int z = MathHelper.floor_double(entity.posZ);
     	Block spawnBlock = entity.worldObj.getBlock(x, y - 1, z);
         return spawnBlock != Blocks.stone && spawnBlock != Blocks.dirt && spawnBlock != Blocks.grass;
-
     }
 }

@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 // TODO: Currently the recipe still needs to be manually put in, need to figure out NEI support proper for this one
 public class GuiAdvancedWorkbench extends GuiContainer
 {
-    private static final ResourceLocation resourceLocation = new ResourceLocation(Constants.MOD_ID + ":textures/gui/advancedworkbench.png");
+    private static final ResourceLocation resourceLocation = new ResourceLocation(Constants.MOD_ID() + "textures/gui/advancedworkbench.png");
     private TileEntityAdvancedWorkbench workbench;
 
     public GuiAdvancedWorkbench(InventoryPlayer inventoryPlayer, TileEntityAdvancedWorkbench tileEntity)

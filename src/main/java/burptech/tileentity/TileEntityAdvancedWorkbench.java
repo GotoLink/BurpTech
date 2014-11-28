@@ -23,12 +23,12 @@ public class TileEntityAdvancedWorkbench extends TileEntity implements ISidedInv
 
     public String inventoryName;
 
-    public static boolean isCraftingGrid(int slotIndex)
+    public boolean isCraftingGrid(int slotIndex)
     {
         return slotIndex >= 27 && slotIndex < 36;
     }
 
-    public static boolean isCraftingResult(int slotIndex)
+    public boolean isCraftingResult(int slotIndex)
     {
         return slotIndex == 36;
     }
@@ -539,16 +539,12 @@ public class TileEntityAdvancedWorkbench extends TileEntity implements ISidedInv
     /**
      * Internal local crafting grid helper
      */
-    private class LocalInventoryCrafting extends InventoryCrafting
+    private final class LocalInventoryCrafting extends InventoryCrafting
     {
         public LocalInventoryCrafting()
         {
             super(new Container() {
-                @SuppressWarnings("all")
-                public boolean isUsableByPlayer(EntityPlayer player)
-                {
-                    return false;
-                }
+                @Override
                 public boolean canInteractWith(EntityPlayer player)
                 {
                     return false;

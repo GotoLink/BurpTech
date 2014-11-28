@@ -1,6 +1,8 @@
 package burptech.lib;
 
-/** 
+import java.util.Locale;
+
+/**
  * Static class that contains all of the constants for BurpTech
  * 
  */
@@ -15,16 +17,15 @@ public final class Constants
      * MOD ID
      */
     public static final String MOD_ID = "BurpTechCore";
+
+    public static String MOD_ID(){
+        return MOD_ID.toLowerCase(Locale.ENGLISH)+":";
+    }
     
     /**
      * MOD NAME
      */
     public static final String MOD_NAME = "BurpTech";
-    
-    /**
-     * MOD CHANNEL NAME - used for networking
-     */
-    public static final String MOD_CHANNEL_NAME = MOD_ID;
 
     public static final String CONFIG_CATEGORY_GENERAL = "General";
     /**

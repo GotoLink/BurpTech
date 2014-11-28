@@ -33,7 +33,7 @@ public class ItemSickle extends ItemTool
     public Item setUnlocalizedName(String name)
     {
         super.setUnlocalizedName(name);
-        setTextureName(Constants.MOD_ID + ":" + name);
+        setTextureName(Constants.MOD_ID() + name);
         return this;
     }
 

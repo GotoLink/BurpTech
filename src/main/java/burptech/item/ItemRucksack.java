@@ -124,7 +124,7 @@ public class ItemRucksack extends Item
     public Item setUnlocalizedName(String name)
     {
         super.setUnlocalizedName(name);
-        setTextureName(Constants.MOD_ID + ":" + name);
+        setTextureName(Constants.MOD_ID() + name);
         return this;
     }
 

@@ -11,7 +11,7 @@ import java.io.File;
 /*
  * All config for BurpTech here
  */
-public class BurpTechConfig 
+public final class BurpTechConfig
 {
     public Property enableCheckForUpdates;
 

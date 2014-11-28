@@ -1,5 +1,6 @@
 package burptech.entity.living.tweaks;
 
+import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -12,7 +13,7 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public class EntityLivingEventHandler 
 {
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void entitySpawning(EntityJoinWorldEvent event)
 	{
 		if (event.entity instanceof EntityLiving) 

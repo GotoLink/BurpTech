@@ -1,3 +1,8 @@
+v1.7.10.56
+Support for NoMoreRecipeConflict
+Ensure server compatibility
+Improved texture handling
+
 v1.7.10.55
 Update for everything (all APIs)
 Added ore dictionary support (planned by previous author)

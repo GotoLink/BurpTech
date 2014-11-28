@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /*
  * Item definitions for BurpTech 
  */
-public class Items 
+public final class Items
 {
     // TODO: Don't create items if they are not enabled
 
@@ -53,10 +53,10 @@ public class Items
 		enderRucksack = new ItemRucksack(true).setUnlocalizedName("enderRucksack").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabTools);
 		rucksack = new ItemRucksack(false).setUnlocalizedName("rucksack").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabTools);
 		portableWorkbench = new ItemPortableWorkbench().setUnlocalizedName("portableWorkbench").setMaxStackSize(1).setCreativeTab(CreativeTabs.tabTools);;
-		cookedEgg = new ItemFood(4, .3F, false).setUnlocalizedName("cookedEgg").setTextureName(Constants.MOD_ID + ":" + "egg_cooked").setMaxStackSize(64);
-		netherCoal = new Item().setUnlocalizedName("netherCoal").setCreativeTab(CreativeTabs.tabMaterials).setTextureName(Constants.MOD_ID + ":" + "nether_coal");
-        bucketNetherFluid = new ItemBucket(configuration.blocks.blockNetherFluid).setUnlocalizedName("bucketNetherFluid").setCreativeTab(CreativeTabs.tabMisc).setTextureName(Constants.MOD_ID + ":" + "nether_fluid_bucket").setContainerItem(net.minecraft.init.Items.bucket);
-        cellNetherFluid = new Item().setUnlocalizedName("cellNetherFluid").setCreativeTab(CreativeTabs.tabMisc).setTextureName(Constants.MOD_ID + ":" + "nether_fluid_cell");
+		cookedEgg = new ItemFood(4, .3F, false).setUnlocalizedName("cookedEgg").setTextureName(Constants.MOD_ID() + "egg_cooked").setMaxStackSize(64);
+		netherCoal = new Item().setUnlocalizedName("netherCoal").setCreativeTab(CreativeTabs.tabMaterials).setTextureName(Constants.MOD_ID() + "nether_coal");
+        bucketNetherFluid = new ItemBucket(configuration.blocks.blockNetherFluid).setUnlocalizedName("bucketNetherFluid").setCreativeTab(CreativeTabs.tabMisc).setTextureName(Constants.MOD_ID() + "nether_fluid_bucket").setContainerItem(net.minecraft.init.Items.bucket);
+        cellNetherFluid = new Item().setUnlocalizedName("cellNetherFluid").setCreativeTab(CreativeTabs.tabMisc).setTextureName(Constants.MOD_ID() + "nether_fluid_cell");
         genericDust = new ItemDust();
 
         // item registry

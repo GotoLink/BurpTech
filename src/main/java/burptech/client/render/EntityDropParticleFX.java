@@ -19,19 +19,6 @@ public class EntityDropParticleFX extends EntityFX {
     public EntityDropParticleFX(World world, double x, double y, double z, float particleRed, float particleGreen, float particleBlue) {
         super(world, x, y, z, 0.0D, 0.0D, 0.0D);
         this.motionX = this.motionY = this.motionZ = 0.0D;
-
-//        if (par8Material == Material.water)
-//        {
-//            this.particleRed = 0.0F;
-//            this.particleGreen = 0.0F;
-//            this.particleBlue = 1.0F;
-//        }
-//        else
-//        {
-//            this.particleRed = 1.0F;
-//            this.particleGreen = 0.0F;
-//            this.particleBlue = 0.0F;
-//        }
         this.particleRed = particleRed;
         this.particleGreen = particleGreen;
         this.particleBlue = particleBlue;

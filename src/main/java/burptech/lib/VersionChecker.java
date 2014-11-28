@@ -14,7 +14,7 @@ import java.net.URL;
 /**
  * Based on PRVersionChecker from Project Red - https://github.com/MrTJP/ProjectRed/blob/master/common/mrtjp/projectred/core/PRVersionChecker.java
  */
-public class VersionChecker extends Thread
+public final class VersionChecker extends Thread
 {
     public boolean isOutdated = false;
     public String newVersion;

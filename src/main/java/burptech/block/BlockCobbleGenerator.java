@@ -17,9 +17,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockCobbleGenerator extends BlockContainer
 {
-    @SideOnly(Side.CLIENT)
-    private IIcon iconFront;
-
     public BlockCobbleGenerator()
     {
         super(Material.rock);
@@ -33,17 +30,18 @@ public class BlockCobbleGenerator extends BlockContainer
         return new TileEntityCobbleGenerator();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
-        return side != (metadata & 7) ? this.blockIcon : this.iconFront;
+        return side != (metadata & 7) ? net.minecraft.init.Blocks.piston.getIcon(1, 0) : net.minecraft.init.Blocks.piston.getIcon(5, 5);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister par1IconRegister)
     {
-        this.blockIcon = par1IconRegister.registerIcon("piston_bottom");
-        this.iconFront = par1IconRegister.registerIcon("piston_inner");
+
     }
 
     @Override

@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler
 {
-
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
 	{
@@ -34,8 +33,7 @@ public class GuiHandler implements IGuiHandler
             case Constants.GUI_ADVANCED_WORKBENCH_ID:
                 return new ContainerAdvancedWorkbench(player.inventory, (TileEntityAdvancedWorkbench)world.getTileEntity(x,y,z));
 		}
-		
-		
+
 		return null;
 	}
 
@@ -62,5 +60,4 @@ public class GuiHandler implements IGuiHandler
 		}
 		return null;
 	}
-
 }
