@@ -15,7 +15,7 @@
 
 	<target name="increment_build_number">
 		<propertyfile file="build.properties">
-			<entry key="release.number" type="int" operation="+" default="1"/>
+			<entry key="number" type="int" operation="+" default="1"/>
 		</propertyfile>
 	</target>
 
@@ -28,8 +28,8 @@
 	</target>
 
 	<target name="replace_tokens">
-		<replace dir="forge\mcp\src\minecraft" token="$VERSION" value="${build.release.minecraft.version}.${build.release.number}" />
-        <replace dir="forge\mcp\src\minecraft" token="$MCVERSION" value="${build.release.minecraft.version}" />
+		<replace dir="forge\mcp\src\minecraft" token="$VERSION" value="${build.minecraft}.${build.number}" />
+        <replace dir="forge\mcp\src\minecraft" token="$MCVERSION" value="${build.minecraft}" />
 	</target>
 
 	<target name="recompile">
@@ -60,8 +60,8 @@
 		<antcall target="reobfuscate" />
 
 		<!-- Build the jar -->
-		<mkdir dir="bin\${build.release.minecraft.version}\" />
-		<jar destfile="bin\${build.release.minecraft.version}\burptech-${build.release.minecraft.version}.${build.release.number}.jar">
+		<mkdir dir="bin\${build.minecraft}\" />
+		<jar destfile="bin\${build.minecraft}\burptech-${build.minecraft}.${build.number}.jar">
 			<fileset dir="src\main\resources" excludes="**/xcf/**,mcmod.info" />
 			<fileset dir="forge\mcp\src\minecraft" includes="mcmod.info" />
 			<fileset dir="forge\mcp\reobf\minecraft" excludes="**/invtweaks/**,**/ic2/**,**/railcraft/**,**/buildcraft/**" />

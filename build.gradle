@@ -18,11 +18,18 @@ buildscript {
 apply plugin: 'forge'
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
+
+// Define properties file
+file("build.properties").withReader {
+    def prop = new Properties()
+    prop.load(it)
+    ext.config = new ConfigSlurper().parse prop
+}
 minecraft {
-    version = "1.7.10-10.13.2.1230"
+    version = config.forge
     runDir = "eclipse"
 }
-version = "1.7.10.55"
+version = config.minecraft+"."+config.number
 group = "github.burptech"
 archivesBaseName = "BurpTech"
 
