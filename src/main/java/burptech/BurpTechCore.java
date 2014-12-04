@@ -1,6 +1,5 @@
 package burptech;
 
-import burptech.gui.GuiHandler;
 import burptech.item.BucketHandler;
 import burptech.item.crafting.RecipeManager;
 import burptech.lib.Constants;
@@ -20,12 +19,10 @@ public final class BurpTechCore
 {
 	@Instance(Constants.MOD_ID)
     public static BurpTechCore instance;
-    public static Logger log = null;
-    public static BurpTechConfig configuration;
-    public static GuiHandler guiHandler; 
-    
     @SidedProxy(clientSide = "burptech.client.ClientProxy", serverSide = "burptech.CommonProxy")
     public static CommonProxy proxy;
+    public static Logger log;
+    public static BurpTechConfig configuration;
 
     @EventHandler
     public void preInitialization(FMLPreInitializationEvent e)
@@ -33,9 +30,6 @@ public final class BurpTechCore
         // setup logger
         log = e.getModLog();
         configuration = BurpTechConfig.load(e.getModConfigurationDirectory());
-        
-        //gui handler
-        guiHandler = new GuiHandler();
 
         MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
     }
@@ -44,7 +38,7 @@ public final class BurpTechCore
     public void initialization(FMLInitializationEvent e)
     {
         // gui handlers
-    	NetworkRegistry.INSTANCE.registerGuiHandler(instance, guiHandler);
+    	NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
     	
         // event handlers
     	if (configuration.enableSlimeSpawningRestrictions.getBoolean())
@@ -61,9 +55,7 @@ public final class BurpTechCore
     	
     	if (configuration.enableGreedyVillagers.getBoolean())
     		MinecraftForge.EVENT_BUS.register(new burptech.entity.living.tweaks.EntityVillagerEventHandler());    		
-    	
-    	// tile entity registrations
-    	
+
         // recipes
     	(new RecipeManager()).addRecipes();
     }
