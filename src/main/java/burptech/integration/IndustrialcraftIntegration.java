@@ -1,5 +1,6 @@
 package burptech.integration;
 
+import ic2.api.item.IC2Items;
 import ic2.api.recipe.IRecipeInput;
 import ic2.api.recipe.RecipeInputItemStack;
 import ic2.api.recipe.RecipeInputOreDict;
@@ -57,6 +58,6 @@ public class IndustrialcraftIntegration
         {
             return null;
         }
-        return ic2.api.item.Items.getItem(itemName).copy();
+        return IC2Items.getItem(itemName).copy();
     }
 }
