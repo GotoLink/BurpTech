@@ -1,10 +1,7 @@
 package burptech.integration;
 
 import ic2.api.item.IC2Items;
-import ic2.api.recipe.IRecipeInput;
-import ic2.api.recipe.RecipeInputItemStack;
-import ic2.api.recipe.RecipeInputOreDict;
-import ic2.api.recipe.Recipes;
+import ic2.api.recipe.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -13,18 +10,21 @@ public class IndustrialcraftIntegration
 {
 	public static boolean addMaceratorRecipe(ItemStack input, ItemStack output)
 	{
-        if (!Integration.INDUSTRIALCRAFT)
-		    return false;
-        Recipes.macerator.addRecipe(getInputFor(input), null, output);
-        return true;
-	}
+        return Integration.INDUSTRIALCRAFT && addMachineRecipe(Recipes.macerator, input, output);
+    }
 
     public static boolean addCompressorRecipe(ItemStack input, ItemStack output)
     {
-        if (!Integration.INDUSTRIALCRAFT)
-            return false;
-        Recipes.compressor.addRecipe(getInputFor(input), null, output);
-        return true;
+        return Integration.INDUSTRIALCRAFT && addMachineRecipe(Recipes.compressor, input, output);
+    }
+
+    private static boolean addMachineRecipe(IMachineRecipeManager machine, ItemStack input, ItemStack output){
+        try{
+            machine.addRecipe(getInputFor(input), null, output);
+            return true;
+        }catch (Exception ignored){
+        }
+        return false;
     }
 
     public static boolean addEnrichmentRecipe(ItemStack itemInput, FluidStack fluidInput, FluidStack fluidOutput)
