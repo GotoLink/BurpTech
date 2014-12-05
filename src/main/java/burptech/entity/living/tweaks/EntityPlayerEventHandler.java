@@ -8,7 +8,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class EntityPlayerEventHandler {
+public final class EntityPlayerEventHandler {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onPlayerInteract(PlayerInteractEvent event){

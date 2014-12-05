@@ -1,17 +1,29 @@
 package burptech.item.crafting;
 
-public class RecipeManager 
+public final class RecipeManager
 {
-    public void addRecipes()
+    public static final RecipeManager INSTANCE = new RecipeManager();
+    private RecipeManager(){}
+
+    public void addRecipes(IAdder...adders)
     {
-    	(new RecipesVanilla()).addRecipes();
-    	(new RecipesBurpTech()).addRecipes();
-    	(new RecipesNetherTech()).addRecipes();
+        for(IAdder adder:adders){
+            adder.addRecipes();
+        }
     }
 
-    public void postInitialization()
+    public void postInitialization(IPostMaker...postInits)
     {
-        (new RecipesNetherTech()).postInitialization();
-        (new RecipesIntegration()).postInitialization();
+        for(IPostMaker maker:postInits){
+            maker.postInitialization();
+        }
+    }
+
+    public static interface IAdder{
+        public void addRecipes();
+    }
+
+    public static interface IPostMaker{
+        public void postInitialization();
     }
 }

@@ -11,9 +11,9 @@ import java.util.List;
 /*
  * Enables mobs to eat breeding food from the ground
  */
-public class EntityAIGroundEater extends EntityAIBase
+public final class EntityAIGroundEater extends EntityAIBase
 {
-	private EntityAnimal entity;
+	private final EntityAnimal entity;
 	
 	public EntityAIGroundEater(EntityAnimal entity)
 	{

@@ -6,7 +6,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
-public class EntityAnimalEventHandler 
+public final class EntityAnimalEventHandler
 {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void entitySpawning(EntityJoinWorldEvent event)

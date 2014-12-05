@@ -12,7 +12,7 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 /*
  * Slime Tweaks
  */
-public class EntitySlimeEventHandler 
+public final class EntitySlimeEventHandler
 {	
 	public EntitySlimeEventHandler()
 	{

@@ -9,8 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-public class RecipesBurpTech 
+public final class RecipesBurpTech implements RecipeManager.IAdder
 {
+    public static final RecipeManager.IAdder INSTANCE = new RecipesBurpTech();
+    private RecipesBurpTech(){}
     /**
      * Adds the crafting recipes to the CraftingManager.
      */

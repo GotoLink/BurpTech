@@ -7,7 +7,7 @@ import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
-public class EntityVillagerEventHandler 
+public final class EntityVillagerEventHandler
 {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void entitySpawning(EntityJoinWorldEvent event)

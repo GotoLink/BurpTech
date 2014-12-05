@@ -16,11 +16,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
 
-public class RecipesIntegration {
+public final class RecipesIntegration implements RecipeManager.IPostMaker{
+
+    public static final RecipeManager.IPostMaker INSTANCE = new RecipesIntegration();
+    private RecipesIntegration(){}
 
     public void postInitialization()
     {
-        if (BurpTechCore.configuration.enableCreosoteToIndustrialcraftEnergy.getBoolean(true))
+        if (BurpTechCore.configuration.enableCreosoteToIndustrialcraftEnergy.getBoolean())
         {
             if (Integration.RAILCRAFT && Integration.INDUSTRIALCRAFT)
             {
@@ -33,7 +36,7 @@ public class RecipesIntegration {
             }
         }
 
-        if (BurpTechCore.configuration.enableSaplingCokeOvenProcessing.getBoolean(true))
+        if (BurpTechCore.configuration.enableSaplingCokeOvenProcessing.getBoolean())
         {
             if (Integration.RAILCRAFT)
             {
@@ -41,7 +44,7 @@ public class RecipesIntegration {
                 if (creosote != null)
                 {
                     // get all saplings from ore dictionary
-                    ArrayList<ItemStack> saplings = OreDictionary.getOres("treeSapling");
+                    ArrayList<ItemStack> saplings = new ArrayList<ItemStack>(OreDictionary.getOres("treeSapling"));
                     saplings.addAll(OreDictionary.getOres("saplingTree"));
 
                     for (ItemStack sapling : saplings) {
@@ -51,7 +54,7 @@ public class RecipesIntegration {
                 }
             }
         }
-        if (BurpTechCore.configuration.enableStoneDustCompression.getBoolean(true))
+        if (BurpTechCore.configuration.enableStoneDustCompression.getBoolean())
         {
             if (Integration.INDUSTRIALCRAFT)
             {
@@ -65,7 +68,7 @@ public class RecipesIntegration {
             }
         }
 
-        if (BurpTechCore.configuration.enableCompressedPlantBallEnrichment.getBoolean(true))
+        if (BurpTechCore.configuration.enableCompressedPlantBallEnrichment.getBoolean())
         {
             if (Integration.INDUSTRIALCRAFT && FluidRegistry.isFluidRegistered("biomass"))
             {
@@ -93,7 +96,7 @@ public class RecipesIntegration {
             }
         }
 
-        if (BurpTechCore.configuration.enableVanillaOreDoubling.getBoolean(false))
+        if (BurpTechCore.configuration.enableVanillaOreDoubling.getBoolean())
         {
             // iron
             ItemStack ironDust = BurpTechCore.configuration.items.ironDust.copy();

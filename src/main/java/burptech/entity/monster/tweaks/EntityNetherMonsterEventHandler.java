@@ -10,7 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 
-public class EntityNetherMonsterEventHandler 
+public final class EntityNetherMonsterEventHandler
 {
 	public EntityNetherMonsterEventHandler()
 	{

@@ -6,8 +6,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-public class RecipesVanilla 
+public final class RecipesVanilla implements RecipeManager.IAdder
 {
+    public static final RecipeManager.IAdder INSTANCE = new RecipesVanilla();
+    private RecipesVanilla(){}
     /**
      * Adds the crafting recipes to the CraftingManager.
      */

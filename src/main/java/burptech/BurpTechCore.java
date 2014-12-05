@@ -1,7 +1,7 @@
 package burptech;
 
 import burptech.item.BucketHandler;
-import burptech.item.crafting.RecipeManager;
+import burptech.item.crafting.*;
 import burptech.lib.Constants;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -57,7 +57,7 @@ public final class BurpTechCore
     		MinecraftForge.EVENT_BUS.register(new burptech.entity.living.tweaks.EntityVillagerEventHandler());    		
 
         // recipes
-    	(new RecipeManager()).addRecipes();
+    	RecipeManager.INSTANCE.addRecipes(RecipesVanilla.INSTANCE, RecipesBurpTech.INSTANCE, RecipesNetherTech.INSTANCE);
     }
     
     @EventHandler
@@ -70,6 +70,6 @@ public final class BurpTechCore
         proxy.postInitialization();
 
         // mod integrations
-        (new RecipeManager()).postInitialization();
+        RecipeManager.INSTANCE.postInitialization(RecipesNetherTech.INSTANCE, RecipesIntegration.INSTANCE);
     }
 }

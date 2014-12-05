@@ -11,7 +11,7 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
-public class EntityLivingEventHandler 
+public final class EntityLivingEventHandler
 {
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void entitySpawning(EntityJoinWorldEvent event)

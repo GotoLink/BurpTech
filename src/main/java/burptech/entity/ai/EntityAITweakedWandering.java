@@ -5,13 +5,13 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.Vec3;
 
-public class EntityAITweakedWandering extends EntityAIBase
+public final class EntityAITweakedWandering extends EntityAIBase
 {
-	private EntityCreature entity;
+	private final EntityCreature entity;
     private double xPosition;
     private double yPosition;
     private double zPosition;
-    private float speed;
+    private final float speed;
 
     public EntityAITweakedWandering(EntityCreature par1EntityCreature, float par2)
     {

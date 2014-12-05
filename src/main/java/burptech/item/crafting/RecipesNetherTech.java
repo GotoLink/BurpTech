@@ -16,8 +16,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 
-public class RecipesNetherTech 
+public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeManager.IPostMaker
 {
+    public static final RecipesNetherTech INSTANCE = new RecipesNetherTech();
+    private RecipesNetherTech(){}
     /**
      * Adds the crafting recipes to the CraftingManager.
      */
