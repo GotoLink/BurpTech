@@ -18,9 +18,10 @@ public class IndustrialcraftIntegration
         return Integration.INDUSTRIALCRAFT && addMachineRecipe(Recipes.compressor, input, output);
     }
 
-    private static boolean addMachineRecipe(IMachineRecipeManager machine, ItemStack input, ItemStack output){
+    private static boolean addMachineRecipe(IMachineRecipeManager machine, ItemStack input, ItemStack output)
+    {
         try{
-            machine.addRecipe(getInputFor(input), null, output);
+            machine.addRecipe(getInputFor(input.copy()), null, output.copy());
             return true;
         }catch (Exception ignored){
         }
@@ -35,7 +36,8 @@ public class IndustrialcraftIntegration
         return true;
     }
 
-    private static IRecipeInput getInputFor(ItemStack input){
+    private static IRecipeInput getInputFor(ItemStack input)
+    {
         int[] ids = OreDictionary.getOreIDs(input);
         if(ids.length>0) {
             return new RecipeInputOreDict(OreDictionary.getOreName(ids[0]), input.stackSize);
@@ -55,9 +57,10 @@ public class IndustrialcraftIntegration
     public static ItemStack getItem(String itemName)
     {
         if (!Integration.INDUSTRIALCRAFT)
-        {
             return null;
-        }
-        return IC2Items.getItem(itemName).copy();
+        ItemStack result = IC2Items.getItem(itemName);
+        if(result!=null)
+            return result.copy();
+        return null;
     }
 }

@@ -10,8 +10,7 @@ public class BuildcraftIntegration
 {
     public static boolean addFacade(Block blockId, int metaData)
     {
-        // TODO need to verify that it actually works somehow
-        return Integration.BUILDCRAFT && FMLInterModComms.sendMessage("BuildCraft|Silicon", "add-facade", new ItemStack(blockId, 1, metaData));
+        return FMLInterModComms.sendMessage("BuildCraft|Silicon", "add-facade", new ItemStack(blockId, 1, metaData));
     }
 
     public static boolean addEngineFuel(Fluid fluid, int powerPerCycle, int totalBurningTime)

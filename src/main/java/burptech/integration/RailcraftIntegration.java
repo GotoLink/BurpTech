@@ -17,12 +17,12 @@ public class RailcraftIntegration
 
         BurpTechCore.log.info("Adding Railcraft Rockcrusher Recipe for " + input.getDisplayName());
 
-        IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(input, true, true);
+        IRockCrusherRecipe recipe = RailcraftCraftingManager.rockCrusher.createNewRecipe(input.copy(), true, true);
 
-        recipe.addOutput(output, 1F);
+        recipe.addOutput(output.copy(), 1F);
 
         if (bonus != null)
-            recipe.addOutput(bonus, bonusChance);
+            recipe.addOutput(bonus.copy(), bonusChance);
 
 		return true;
 	}
