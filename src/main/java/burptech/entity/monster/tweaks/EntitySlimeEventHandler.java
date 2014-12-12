@@ -13,8 +13,9 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
  * Slime Tweaks
  */
 public final class EntitySlimeEventHandler
-{	
-	public EntitySlimeEventHandler()
+{
+    public static final EntitySlimeEventHandler INSTANCE = new EntitySlimeEventHandler();
+	private EntitySlimeEventHandler()
 	{
 		BurpTechCore.log.info("Enabling Slime Spawning Restrictions");
 	}

@@ -13,6 +13,9 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public final class EntityLivingEventHandler
 {
+    public static final EntityLivingEventHandler INSTANCE = new EntityLivingEventHandler();
+    private EntityLivingEventHandler(){}
+
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void entitySpawning(EntityJoinWorldEvent event)
 	{

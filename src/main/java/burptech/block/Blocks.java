@@ -72,6 +72,6 @@ public final class Blocks
 	{
 		blockIlluminatedCocoaOn = new BlockCocoa().setHardness(0.2F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setLightLevel(0.9375F).setBlockName("cocoa").setBlockTextureName("cocoa");
         GameRegistry.registerBlock(blockIlluminatedCocoaOn, "blockLightingCocoa");
-        MinecraftForge.EVENT_BUS.register(new EntityPlayerEventHandler());
+        MinecraftForge.EVENT_BUS.register(EntityPlayerEventHandler.INSTANCE);
     }
 }

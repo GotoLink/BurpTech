@@ -9,6 +9,9 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public final class EntityVillagerEventHandler
 {
+    public static final EntityVillagerEventHandler INSTANCE = new EntityVillagerEventHandler();
+    private EntityVillagerEventHandler(){}
+
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void entitySpawning(EntityJoinWorldEvent event)
 	{

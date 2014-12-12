@@ -8,6 +8,9 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
 public final class EntityAnimalEventHandler
 {
+    public static final EntityAnimalEventHandler INSTANCE = new EntityAnimalEventHandler();
+    private EntityAnimalEventHandler(){}
+
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void entitySpawning(EntityJoinWorldEvent event)
 	{

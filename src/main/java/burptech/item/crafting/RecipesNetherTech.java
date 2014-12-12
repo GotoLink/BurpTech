@@ -25,9 +25,9 @@ public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeMana
      */
     public void addRecipes()
     {
-        if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean(true))
+        if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean())
 		    addSolidFuels();
-        if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean(true))
+        if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean())
             addLiquidFuels();
     }
 
@@ -55,11 +55,11 @@ public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeMana
     public void postInitialization()
     {
         // add fuel handler
-        if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean(true))
-            GameRegistry.registerFuelHandler(new NetherTechSolidFuelHandler());
+        if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean())
+            GameRegistry.registerFuelHandler(NetherTechSolidFuelHandler.INSTANCE);
 
-        if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean(true))
-            GameRegistry.registerFuelHandler(new NetherTechLiquidFuelHandler());
+        if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean())
+            GameRegistry.registerFuelHandler(NetherTechLiquidFuelHandler.INSTANCE);
 
         // vanilla recipes for nether coal
         if (BurpTechCore.configuration.enableNetherTechVanillaRecipes.getBoolean(true))
@@ -73,7 +73,7 @@ public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeMana
         if (Integration.INDUSTRIALCRAFT && BurpTechCore.configuration.enableNetherTechIndustrialcraftRecipes.getBoolean(true))
         {
             ItemStack netherDust = BurpTechCore.configuration.items.netherDust.copy();
-            if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean(true))
+            if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean())
             {
                 IndustrialcraftIntegration.addSemiFlueGeneratorFuel("nether", 10, 32);
                 IndustrialcraftIntegration.addMaceratorRecipe(new ItemStack(Blocks.netherrack), netherDust.copy());
@@ -86,9 +86,9 @@ public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeMana
                 }
             }
 
-            if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean(true))
+            if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean())
             {
-                if(!BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean(true))
+                if(!BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean())
                     IndustrialcraftIntegration.addMaceratorRecipe(new ItemStack(Blocks.netherrack), netherDust.copy());
                 netherDust.stackSize = 8;
                 IndustrialcraftIntegration.addCompressorRecipe(netherDust, new ItemStack(BurpTechCore.configuration.items.netherCoal));
@@ -97,8 +97,8 @@ public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeMana
 
         if (Integration.RAILCRAFT && BurpTechCore.configuration.enableNetherTechRailcraftRecipes.getBoolean(true))
         {
-            if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean(true)) {
-                if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean(true)) {
+            if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean()) {
+                if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean()) {
                     RailcraftIntegration.addBoilerFuel(FluidRegistry.getFluid("nether"), 32000);
                     RailcraftIntegration.addRockCrusherRecipe(new ItemStack(Blocks.netherrack), BurpTechCore.configuration.items.netherDust.copy(), null, 0);
                     RailcraftIntegration.addBlastFurnaceRecipe(BurpTechCore.configuration.items.netherDust.copy(), true, false, 600, BurpTechCore.configuration.items.infusedNetherDust.copy());
@@ -108,7 +108,7 @@ public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeMana
                     RailcraftIntegration.addBlastFurnaceRecipe(BurpTechCore.configuration.items.netherDust.copy(), true, false, 600, new ItemStack(BurpTechCore.configuration.items.netherCoal));
                 }
             }
-            else if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean(true))
+            else if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean())
             {
                 RailcraftIntegration.addBoilerFuel(FluidRegistry.getFluid("nether"), 32000);
                 RailcraftIntegration.addRockCrusherRecipe(new ItemStack(Blocks.netherrack), BurpTechCore.configuration.items.netherDust.copy(), null, 0);
@@ -118,10 +118,10 @@ public final class RecipesNetherTech implements RecipeManager.IAdder, RecipeMana
 
         if (Integration.BUILDCRAFT && BurpTechCore.configuration.enableNetherTechBuildcraftRecipes.getBoolean(true))
         {
-            if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean(true))
+            if (BurpTechCore.configuration.enableNetherTechLiquidFuels.getBoolean())
                 BuildcraftIntegration.addEngineFuel(FluidRegistry.getFluid("nether"), 5, 20000);
 
-            if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean(true))
+            if (BurpTechCore.configuration.enableNetherTechSolidFuels.getBoolean())
                 BuildcraftIntegration.addFacade(BurpTechCore.configuration.blocks.blockNetherCoal, 0);
         }
     }

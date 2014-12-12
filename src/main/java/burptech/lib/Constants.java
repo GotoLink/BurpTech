@@ -27,6 +27,8 @@ public final class Constants
      */
     public static final String MOD_NAME = "BurpTech";
 
+    public static final String DEPS = "after:IC2;after:Railcraft;after:BuildCraft|Silicon";
+
     public static final String CONFIG_CATEGORY_GENERAL = "General";
     /**
      * Configuration Category for Tweaks

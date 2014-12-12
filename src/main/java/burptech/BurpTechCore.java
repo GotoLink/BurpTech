@@ -1,5 +1,11 @@
 package burptech;
 
+import burptech.entity.living.tweaks.EntityLivingEventHandler;
+import burptech.entity.living.tweaks.EntityVillagerEventHandler;
+import burptech.entity.monster.tweaks.EntityEndermanTweaks;
+import burptech.entity.monster.tweaks.EntityNetherMonsterEventHandler;
+import burptech.entity.monster.tweaks.EntitySlimeEventHandler;
+import burptech.entity.passive.tweaks.EntityAnimalEventHandler;
 import burptech.item.BucketHandler;
 import burptech.item.crafting.*;
 import burptech.lib.Constants;
@@ -14,7 +20,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, useMetadata = true)
+@Mod(modid = Constants.MOD_ID, name = Constants.MOD_NAME, dependencies = Constants.DEPS, useMetadata = true)
 public final class BurpTechCore
 {
 	@Instance(Constants.MOD_ID)
@@ -42,19 +48,19 @@ public final class BurpTechCore
     	
         // event handlers
     	if (configuration.enableSlimeSpawningRestrictions.getBoolean())
-    		MinecraftForge.EVENT_BUS.register(new burptech.entity.monster.tweaks.EntitySlimeEventHandler());
+    		MinecraftForge.EVENT_BUS.register(EntitySlimeEventHandler.INSTANCE);
     	
     	if (configuration.enableNetherSpawningRestrictions.getBoolean())
-    		MinecraftForge.EVENT_BUS.register(new burptech.entity.monster.tweaks.EntityNetherMonsterEventHandler());
+    		MinecraftForge.EVENT_BUS.register(EntityNetherMonsterEventHandler.INSTANCE);
     	
     	if (configuration.enableMobsEatingOffOfGround.getBoolean())
-    		MinecraftForge.EVENT_BUS.register(new burptech.entity.passive.tweaks.EntityAnimalEventHandler());
+    		MinecraftForge.EVENT_BUS.register(EntityAnimalEventHandler.INSTANCE);
     	
     	if (configuration.enableMobsWandering.getBoolean())
-    		MinecraftForge.EVENT_BUS.register(new burptech.entity.living.tweaks.EntityLivingEventHandler());
+    		MinecraftForge.EVENT_BUS.register(EntityLivingEventHandler.INSTANCE);
     	
     	if (configuration.enableGreedyVillagers.getBoolean())
-    		MinecraftForge.EVENT_BUS.register(new burptech.entity.living.tweaks.EntityVillagerEventHandler());    		
+    		MinecraftForge.EVENT_BUS.register(EntityVillagerEventHandler.INSTANCE);
 
         // recipes
     	RecipeManager.INSTANCE.addRecipes(RecipesVanilla.INSTANCE, RecipesBurpTech.INSTANCE, RecipesNetherTech.INSTANCE);
@@ -65,7 +71,7 @@ public final class BurpTechCore
     {
     	// tweaks
     	if (configuration.disableEndermanGriefing.getBoolean())
-    		burptech.entity.monster.tweaks.EntityEndermanTweaks.enableAntiGriefing();
+    		EntityEndermanTweaks.enableAntiGriefing();
 
         proxy.postInitialization();
 

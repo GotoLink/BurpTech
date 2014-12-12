@@ -6,9 +6,11 @@ import net.minecraft.item.ItemStack;
 
 /**
  * Liquid Fuel NetherTech Fuel Handler
- *
  */
-public class NetherTechLiquidFuelHandler implements IFuelHandler {
+public final class NetherTechLiquidFuelHandler implements IFuelHandler {
+
+    public static final IFuelHandler INSTANCE = new NetherTechLiquidFuelHandler();
+    private NetherTechLiquidFuelHandler(){}
 
     @Override
     public int getBurnTime(ItemStack fuel)

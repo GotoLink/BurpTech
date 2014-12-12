@@ -12,7 +12,8 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent.CheckSpawn;
 
 public final class EntityNetherMonsterEventHandler
 {
-	public EntityNetherMonsterEventHandler()
+    public static final EntityNetherMonsterEventHandler INSTANCE = new EntityNetherMonsterEventHandler();
+	private EntityNetherMonsterEventHandler()
 	{
 		BurpTechCore.log.info("Enabling Nether Monster Spawning Restrictions");
 	}

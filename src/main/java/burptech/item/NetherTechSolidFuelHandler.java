@@ -10,13 +10,13 @@ import net.minecraft.tileentity.TileEntityFurnace;
 
 /**
  * Solid Fuel NetherTech Fuel Handler
- *
  */
-public class NetherTechSolidFuelHandler implements IFuelHandler
+public final class NetherTechSolidFuelHandler implements IFuelHandler
 {
+    public static final IFuelHandler INSTANCE = new NetherTechSolidFuelHandler();
     private int baseBurnValue = 1600;
 
-    public NetherTechSolidFuelHandler()
+    private NetherTechSolidFuelHandler()
     {
         baseBurnValue = TileEntityFurnace.getItemBurnTime(new ItemStack(Items.coal, 1, 0));
     }
